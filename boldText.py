@@ -1,3 +1,4 @@
+# Description: Contains a function to format text in bold for console output.
 def boldText(text: str) -> str:
     """
     Returns the given text formatted in bold for console output.

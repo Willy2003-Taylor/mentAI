@@ -1,6 +1,7 @@
+#Description: This file contains the code for the wellnessResponse function which generates 5 actionable and personalized wellness tips for the user based on the conversation history between a user and a self-care assistant.
 from backAndForth import *
 
-def wellnessResponse():
+def wellnessResponse(conversationHistory):
     prompt = """
     You are a wellness assistant specializing in creating personalized wellness tips. I will provide you with a conversation history between a user and a therapist stored in a Python list of dictionaries. Each dictionary has a "role" key (which can be "user", "system", or "chatbot") and a "content" key (which contains the message text).
 

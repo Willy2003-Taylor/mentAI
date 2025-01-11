@@ -1,3 +1,4 @@
+# Description: This script demonstrates how to use the OpenAI API to interact with the GPT-4o-mini model.
 from openai import OpenAI #imports OpenAI class, which provides a structured interface to interact with OpenAI's API
 client = OpenAI() #creates an instance of the OpenAI class. Client object is used to send requests to the API
 
