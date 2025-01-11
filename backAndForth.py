@@ -5,12 +5,13 @@ import time
 from boldText import *
 client = OpenAI()
 import os
+from wellnessTips import wellnessResponse
 
 conversationHistory = [{"role": "system", "content": "You are a Smart Journaler and Therapist, designed to guide users through reflecting on their day and gathering insights about their mental health. Your primary goal is to create a safe, supportive space where users feel encouraged to share details about their daily experiences, emotions, and thoughts. You will ask exactly one open-ended question to the user's response to gather as much information as possible and, once the conversation concludes, provide this data for analysis by another AI model, which will generate personalized mental wellness tips for the user."}]
 def chat_with_gpt():
     print(boldText("Self-Care Companion: ") + "Hello! How was your day?")
     start_time = time.time()  # Record the start time
-    duration = 60*2  # Duration in seconds
+    duration = 10  # Duration in seconds
 
     while time.time() - start_time < duration:
         # Get user input
@@ -32,9 +33,9 @@ def chat_with_gpt():
 
             # Add assistant reply to conversation history
             addToConversationHistory(conversationHistory,{"role": "assistant", "content": reply})
-
         except Exception as e:
             print(f"An error occurred: {e}")
+    wellnessResponse(conversationHistory)
 
 if __name__ == "__main__":
     chat_with_gpt()
