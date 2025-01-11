@@ -27,9 +27,26 @@ def chat_with_gpt():
 
         # Call the API
         try:
-            response = client.chat.completions.create(model="gpt-4o-mini",messages=conversationHistory)
+           response = client.chat.completions.create(model="gpt-4o-mini",messages=conversationHistory)
             reply = response.choices[0].message.content
-            print(boldText("Self-Care Companion: ") + reply)
+
+            # Allow user to choose 2 different modes: 1) Text-only response 2) Audio and text response
+
+            print("What kind of response do you prefer: 1. Text-only response\n 2. Text-and-Voice response.\n")
+            print("Please enter 1/2.\n")
+            choice = input()
+
+            if choice == "1":
+                print(boldText("Self-Care Companion: ") + reply)
+
+            elif choice == "2":
+                with client.audio.speech.with_streaming_response.create(
+                    model = "tts-1",
+                    voice = "nova",
+                    input = reply,
+                ) as voice_reply:
+                    voice_reply.stream_to_file("response.mp3")
+
 
             # Add assistant reply to conversation history
             addToConversationHistory(conversationHistory,{"role": "assistant", "content": reply})
